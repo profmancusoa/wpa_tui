@@ -171,6 +171,7 @@ connect_to_network() {
         "${menu_args[@]}" 3>&1 1>&2 2>&3) || return 0
 
     "$WPA_CLI" -i "$IFACE" select_network "$choice" >/dev/null 2>&1
+    "$WPA_CLI" -i "$IFACE" save_config >/dev/null 2>&1
 
     wait_for_connection "${id_to_ssid[$choice]}"
 }
